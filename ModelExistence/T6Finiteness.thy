@@ -41,45 +41,7 @@ qed
     
 (*<*)
 
-   (*   
-theorem finite_character_closed1: 
-  assumes "finite_character \<C>"
-  shows "subset_closed \<C>"
-proof (unfold subset_closed_def) 
-  show "\<forall> S \<in> \<C>. \<forall> T. T \<subseteq> S \<longrightarrow> T \<in> \<C>"  
-  proof 
-    fix S 
-    assume "S \<in> \<C>"
-    show "\<forall>T\<subseteq>S. T \<in> \<C>"
-    proof (rule allI)
-      fix T
-      show "T \<subseteq> S \<longrightarrow> T \<in> \<C>"
-      proof 
-        assume "T \<subseteq> S"
-        show "T \<in> \<C>" 
-        proof -         
-          have "\<forall>U. finite U \<longrightarrow> U \<subseteq> T \<longrightarrow> U \<in> \<C>"
-          proof (rule allI)
-            fix U
-            show "finite U \<longrightarrow> U \<subseteq> T \<longrightarrow> U \<in> \<C>"
-            proof
-              assume "finite U"
-              show "U \<subseteq> T \<longrightarrow> U \<in> \<C>"
-              proof
-                assume "U \<subseteq> T" 
-                hence "U \<subseteq> S" using `T \<subseteq> S` by simp
-                thus "U \<in> \<C>" using `S \<in> \<C>` and `finite U` and assms 
-                  by (unfold finite_character_def) blast
-              qed
-            qed
-          qed
-          thus ?thesis using assms by( unfold finite_character_def) blast
-        qed
-      qed
-    qed
-  qed
-qed
-*)
+
 
 (*>*)
 subsection \<open> Extension to the finite character property \<close>
