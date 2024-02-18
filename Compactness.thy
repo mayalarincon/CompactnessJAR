@@ -28,7 +28,7 @@ proof (rule notI)
 qed
  
 
-lemma comp1:
+lemma consistenceP_Prop1:
   assumes "∀ (A::'b formula set). (A⊆ W ∧ finite A) ⟶ satisfiable A"
   shows "(∀P. ¬ (Atom P ∈ W ∧ (¬. Atom P) ∈ W))"
 proof (rule allI notI)+
@@ -59,7 +59,7 @@ proof -
   thus ?thesis by(unfold satisfiable_def, auto)
 qed
 
-lemma comp2:
+lemma consistenceP_Prop2:
   assumes "∀ (A::'b formula set). (A⊆ W ∧ finite A) ⟶ satisfiable A"
   shows "FF ∉ W"
 proof (rule notI)
@@ -90,7 +90,7 @@ proof -
   thus ?thesis by(unfold satisfiable_def, auto)
 qed
 
-lemma comp3:
+lemma consistenceP_Prop3:
   assumes "∀ (A::'b formula set). (A⊆ W ∧ finite A) ⟶ satisfiable A"
   shows "¬.TT ∉ W"
 proof (rule notI)
@@ -142,7 +142,7 @@ proof -
 qed
 
 
-lemma comp4:
+lemma consistenceP_Prop4:
   assumes hip1: "∀ (A::'b formula set). (A⊆ W ∧ finite A) ⟶ satisfiable A" 
   and hip2: "¬.¬.F ∈ W"
   shows "∀ (A::'b formula set). (A⊆ W ∪ {F} ∧ finite A) ⟶ satisfiable A"
@@ -184,7 +184,7 @@ proof -
     by (unfold satisfiable_def, unfold model_def, auto)
 qed
 
-lemma comp5:
+lemma consistenceP_Prop5:
   assumes hip0: "FormulaAlfa F" 
   and hip1: "∀ (A::'b formula set). (A⊆ W ∧ finite A) ⟶ satisfiable A" 
   and hip2: "F ∈ W"
@@ -249,7 +249,7 @@ proof -
 qed
 
 
-lemma comp6:
+lemma consistenceP_Prop6:
   assumes hip0: "FormulaBeta F" 
   and hip1: "∀ (A::'b formula set). (A⊆ W ∧ finite A) ⟶ satisfiable A" 
   and hip2: "F ∈ W"
@@ -317,17 +317,17 @@ proof (unfold consistenceP_def, rule allI, rule impI)
         (W ∪ {Comp1 F} ∈ ?C ∨ W ∪ {Comp2 F} ∈ ?C))"
   proof -   
     have "(∀P. ¬ (atom P ∈ W ∧ (¬. atom P) ∈ W))" 
-      using hip  comp1 by simp
+      using hip  consistenceP_Prop1 by simp
     moreover
-    have "FF ∉ W" using hip comp2 by auto
+    have "FF ∉ W" using hip consistenceP_Prop2 by auto
     moreover 
-    have "¬. TT ∉ W" using hip comp3 by auto
+    have "¬. TT ∉ W" using hip consistenceP_Prop3 by auto
     moreover
     have "∀F. (¬.¬.F) ∈ W ⟶ W ∪ {F} ∈ ?C"
     proof (rule allI impI)+
       fix F
       assume hip1: "¬.¬.F ∈ W"    
-      show "W ∪ {F} ∈ ?C" using hip hip1 comp4 by simp
+      show "W ∪ {F} ∈ ?C" using hip hip1 consistenceP_Prop4 by simp
     qed
     moreover
     have
@@ -335,7 +335,7 @@ proof (unfold consistenceP_def, rule allI, rule impI)
     proof (rule allI impI)+
       fix F 
       assume "FormulaAlfa F ∧ F ∈ W"      
-      thus "W ∪ {Comp1 F, Comp2 F} ∈ ?C" using hip comp5[of F] by blast
+      thus "W ∪ {Comp1 F, Comp2 F} ∈ ?C" using hip consistenceP_Prop5[of F] by blast
     qed
     moreover         
     have "∀F. (FormulaBeta F) ∧ F ∈ W ⟶ 
@@ -344,7 +344,7 @@ proof (unfold consistenceP_def, rule allI, rule impI)
       fix F 
       assume "(FormulaBeta F) ∧ F ∈ W" 
       thus "W ∪ {Comp1 F} ∈ ?C ∨ W ∪ {Comp2 F} ∈ ?C" 
-        using hip comp6[of F] by blast      
+        using hip consistenceP_Prop6[of F] by blast      
     qed 
     ultimately 
     show ?thesis by auto
