@@ -1,7 +1,7 @@
 (* Hall Theorem for countable families of finite sets
    Fabian Fernando Serrano Suárez  UNAL Manizales
-   Thaynara Arielly de Lima UFG 
-   Mauricio Ayala-Rincón UnB
+   Thaynara Arielly de Lima        Universidade Federal de Goiáis 
+   Mauricio Ayala-Rincón           Universidade de Brasília
 *) 
 theory Hall_Theorem
   imports  

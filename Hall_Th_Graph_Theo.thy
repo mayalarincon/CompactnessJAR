@@ -1,7 +1,7 @@
 (* Hall's Theorem - Graphs' version
    Fabian Fernando Serrano Suárez  UNAL Manizales
-   Thaynara Arielly de Lima UFG 
-   Mauricio Ayala-Rincón UnB
+   Thaynara Arielly de Lima        Universidade Federal de Goiáis 
+   Mauricio Ayala-Rincón           Universidade de Brasília
 *)
 theory Hall_Th_Graph_Theo
   imports

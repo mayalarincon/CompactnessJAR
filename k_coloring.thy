@@ -1,7 +1,7 @@
-(* De Bruijn - Erdös  k-colouring theorem 
+(* De Bruijn-Erdös  k-coloring theorem 
    Fabian Fernando Serrano Suárez  UNAL Manizales
-   Thaynara Arielly de Lima UFG 
-   Mauricio Ayala-Rincón UnB
+   Thaynara Arielly de Lima        Universidade Federal de Goiáis 
+   Mauricio Ayala-Rincón           Universidade de Brasília
 *)
 
 
@@ -10,7 +10,7 @@ theory k_coloring
 imports Main Compactness
 begin
 (*>*)
-section \<open> Graph Colouring \<close>
+section \<open> Graph Coloring \<close>
 text\<open>
 This theory formalizes the $k$-coloring theorem for countable graphs.
 The proof follows as consequence of the compactness theorem for 
@@ -51,7 +51,7 @@ definition is_induced_subgraph :: "'v digraph \<Rightarrow>'v digraph \<Rightarr
   "is_induced_subgraph H G \<equiv>
   (V[H] \<subseteq> V[G]) \<and> E[H] = E[G] \<inter> ((V[H]) \<times> (V[H]))"
 
-lemma
+lemma  (* Well-definedness of the above definition *)
   assumes "is_graph G" and "is_induced_subgraph H G"
   shows "is_graph H"  
 (*<*)
@@ -139,11 +139,11 @@ v(C_{u,i})= \left\{ \begin{array}{ll} \T   &  \mbox{if }  u\in V_0\mbox{   and  
 \right.
 \]
 
- We have  $v(F)=\T$ for all $F\in S$ since $c$ is a $k$-colouring and 
+ We have  $v(F)=\T$ for all $F\in S$ since $c$ is a $k$-coloring and 
  $F\in\mathcal{F}\cup \mathcal{G}\cup \mathcal{H}$. Thus, $\mathcal{T}$ is finitely satisfiable; hence, by the compactness theorem, it is satisfiable. 
  
 Let $I:\mathcal{P} \to \{\T, \F\}$ be an interpretation that holds $\mathcal{T}$. We establish a correspondence $c: V \to [k]$ defined as $c(u)= i$ if and only if  $I(C_{u,i})= \T$.
-Therefore, by the definition of $\mathcal{T}$ and since $I(F)=\T$ for all $F\in \mathcal{T}$, one has that  $c$ is a $k$-colouring of $G=(V,E)$.
+Therefore, by the definition of $\mathcal{T}$ and since $I(F)=\T$ for all $F\in \mathcal{T}$, one has that  $c$ is a $k$-coloring of $G=(V,E)$.
 Indeed, since  $\mathcal{F}$ and $\mathcal{G}$ are satisfiable, to each vertex $v\in V$ corresponds exactly a color in  $[k]$, thus, $c$ is a function. 
 Finally, since  $\mathcal{H}$ is satisfiable, adjacent vertices have different colors. 
  \end{proof}
@@ -428,7 +428,7 @@ qed
 (*>*)
 
 text\<open>
-A colouring of $G_{V_0}$ enables the construction of a model of $S$.
+A coloring of $G_{V_0}$ enables the construction of a model of $S$.
 \<close>
 
 
@@ -604,7 +604,7 @@ qed
 (*>*)
 
 text\<open>
-An interpretation $I:\mathcal{P} \to \{\T, \F\}$ that holds $\mathcal{T}$ establishes a colouring
+An interpretation $I:\mathcal{P} \to \{\T, \F\}$ that holds $\mathcal{T}$ establishes a coloring
 $c: V \to [k]$ given by $c(u)= i$ if and only if $I(C_{u,i})= \T$.
 \<close>
 
@@ -729,7 +729,7 @@ qed
 
 (*>*)
 text\<open>
-The next lemma establishes the existence of the previous colouring function.
+The next lemma establishes the existence of the previous coloring function.
 \<close>
 lemma coloring_function:
   assumes "u \<in> V[G]" and "I model (\<T> G k)"  
@@ -845,7 +845,7 @@ text\<open>
 Finally, the formalization of de Bruijn-Erdös theorem (\ref{th:deBruijnErdos}) is given as below.
 \<close>
 
-theorem coloring:
+theorem deBruijn_Erdos_coloring:
   assumes "is_graph (G::('vertices:: countable) set \<times> ('vertices \<times> 'vertices) set)"
   and "\<forall>H. (is_induced_subgraph H G \<and> finite_graph H \<longrightarrow> colorable H k)"
   shows "colorable G k"
