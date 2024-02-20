@@ -1,8 +1,8 @@
 (* Propositional formula  *)
 
-(* Formalization taken from: 
-   Fabián Fernando Serrano Suárez. Formalización en Isar de la
-   Meta-Lógica de Primer Orden. PhD thesis, 
+(* Formalization adapted from: 
+   Fabián Fernando Serrano Suárez, "Formalización en Isar de la
+   Meta-Lógica de Primer Orden." PhD thesis, 
    Departamento de Ciencias de la Computación e Inteligencia Artificial,
    Universidadde Sevilla, Spain, 2012.
    https://idus.us.es/handle/11441/57780.  In Spanish  *)
