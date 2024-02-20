@@ -1321,7 +1321,7 @@ definition nodes_set_formulas :: "'v formula set  \<Rightarrow> 'v set"  where
 definition maximum_height:: "'v set \<Rightarrow>'v rel \<Rightarrow> 'v  formula  set  \<Rightarrow>  nat"  where
  "maximum_height A r S =  Max (\<Union>x\<in>nodes_set_formulas S. {height A x r})"
 
-lemma nodo_formula:
+lemma node_formula:
   assumes "v \<in> set l" 
   shows "v \<in> nodes_formula (disjunction_nodes l)" 
 proof-
@@ -1353,7 +1353,7 @@ proof-
   thus ?thesis using assms by auto
 qed 
 
-lemma nodo_disjunction_formulas:
+lemma node_disjunction_formulas:
   assumes  "tree A r" and  "finitely_branching A r" and "v\<in>(level A r n)" 
   and  "F = disjunction_nodes(set_to_list (level A r n))" 
   shows  "v \<in> nodes_formula F"
@@ -1363,16 +1363,16 @@ proof-
   hence "v\<in> set (set_to_list (level A r n))" 
     using assms(3) by auto
   thus "v \<in> nodes_formula F"
-    using assms(3-4)  nodo_formula  by auto
+    using assms(3-4)  node_formula  by auto
 qed
 
-fun nodo_sig_level_max:: "'v set \<Rightarrow> 'v rel \<Rightarrow> 'v formula set  \<Rightarrow> 'v" 
-  where "nodo_sig_level_max A r S = 
+fun node_sig_level_max:: "'v set \<Rightarrow> 'v rel \<Rightarrow> 'v formula set  \<Rightarrow> 'v" 
+  where "node_sig_level_max A r S = 
   (SOME u. u \<in> (level A r ((maximum_height A r S)+1)))"
 
-lemma nodo_level_maximum:  
+lemma node_level_maximum:  
   assumes "infinite_tree A r" and  "finitely_branching A r"
-  shows "(nodo_sig_level_max A r S) \<in>  (level A r ((maximum_height A r S)+1))" 
+  shows "(node_sig_level_max A r S) \<in>  (level A r ((maximum_height A r S)+1))" 
 proof-
   have  "\<exists>u. u \<in> (level A r ((maximum_height A r S)+1))"
     using assms  all_levels_non_empty[of A r] by (unfold level_def, auto)
@@ -1423,7 +1423,7 @@ shows  "satisfiable S"
 proof-
   let ?m = "(maximum_height A r S)+1"
   let ?level = "level A r ?m"
-  let ?u = "nodo_sig_level_max A r S" 
+  let ?u = "node_sig_level_max A r S" 
   have 1: "tree A r" using `infinite_tree A r` by auto
   have  "r \<subseteq> A \<times> A" and "strict_part_order A r" 
     using  `tree A r` tree by auto
@@ -1431,7 +1431,7 @@ proof-
     using `strict_part_order A r`
     by(unfold strict_part_order_def, auto) 
   have "\<exists>u. u \<in>?level" 
-    using assms(1-2) nodo_level_maximum by auto
+    using assms(1-2) node_level_maximum by auto
   then obtain u where u: "u \<in> ?level"  by auto
   hence levelu:  "?u \<in> ?level"
     using someI by auto
@@ -1458,7 +1458,7 @@ proof-
             using  assms(1-2) all_levels_non_empty[of A r] by auto 
           then obtain v where v: "v \<in> (level A r n)" by auto      
           hence  "v \<in> nodes_formula F" 
-            using n nodo_disjunction_formulas[OF 1 assms(2) v, of F ]
+            using n node_disjunction_formulas[OF 1 assms(2) v, of F ]
             by auto
           hence a: "v \<in> nodes_set_formulas S" 
             using `F \<in> S`  by(unfold nodes_set_formulas_def, blast)
