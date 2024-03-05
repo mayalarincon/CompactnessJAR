@@ -459,5 +459,3 @@ proof(unfold_locales, rule impI)
 qed
 
 end
-
-

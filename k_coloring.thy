@@ -879,4 +879,3 @@ proof-
 qed
 
 end
-

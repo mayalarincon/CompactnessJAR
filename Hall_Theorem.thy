@@ -995,4 +995,3 @@ proof clarify
 qed
 
 end
-
