@@ -671,51 +671,7 @@ proof-
   thus "∃f. enumeration (f:: nat ⇒('a ×'b )formula)" 
     using EnumerationFormulasP1 by auto 
 qed
-(*
-theorem all_formulas_satisfiable:
-  fixes S :: "'a ⇒ 'b set" and I :: "'a set"
-  assumes "∃g. enumeration (g:: nat ⇒'a)" and "∃h. enumeration (h:: nat ⇒'b)" 
-  and "∀i∈I. finite (S i)"
-  and "∀J⊆I. finite J ⟶  card J ≤ card (⋃ (S ` J))"
-shows "satisfiable (𝒯 S I)"
-proof- 
-  have "∀ A. A ⊆ (𝒯 S I) ∧ (finite A) ⟶ satisfiable A"
-  proof(rule allI, rule impI) 
-    fix A assume "A ⊆ (𝒯 S I) ∧ (finite A)"
-    hence hip1:  "A ⊆ (𝒯 S I)" and  hip2: "finite A" by auto
-    show "satisfiable A"
-    proof -
-      have 0: "∀i∈I. (S i)≠{}" using assms(4) all_nonempty_sets1 by auto
-      hence 1: "(indices_set_formulas A)⊆I"  
-        using assms(3) hip1 indices_subset_formulas[of I S A] by auto
-      have 2: "finite (indices_set_formulas A)" 
-        using hip2 finite_set_indices by auto
-      have 3: "card (indices_set_formulas A) ≤
-                 card(⋃ (S ` (indices_set_formulas A)))"
-        using 1 2 assms(4) by auto
-      have "∀J⊆(indices_set_formulas A). card J ≤ card(⋃ (S ` J))"
-     proof(rule allI)
-       fix J
-       show "J ⊆ indices_set_formulas A ⟶ card J ≤ card (⋃ (S ` J)) "
-       proof(rule impI)
-         assume hip: "J⊆(indices_set_formulas A)"              
-       hence 4: "finite J" 
-         using 2  rev_finite_subset by auto 
-       have "J⊆I" using hip 1 by auto
-       thus "card J ≤ card (⋃ (S ` J))" using 4  assms(4) by auto      
-     qed
-   qed
-   thus "satisfiable A"
-     using 0 assms(3) hip1 hip2 finite_is_satisfiable[of I S A]  by auto
- qed
-qed
-  thus "satisfiable (𝒯 S I)" using 
-  Compacteness_Theorem[OF  EnumFormulasHall[OF
-  `∃g. enumeration (g:: nat ⇒'a)`  `∃h. enumeration (h:: nat ⇒'b)` ],
-       of "(𝒯 S I)"]
-    by auto
-qed
-*)
+
 theorem all_formulas_satisfiable:
  fixes S :: "('a::countable ⇒ 'b::countable set)" and I :: "'a set"
  assumes "∀i∈(I::'a set). finite (S i)" and "∀J⊆I. finite J ⟶  card J ≤ card (⋃ (S ` J))"
@@ -1008,17 +964,6 @@ proof-
   qed
   thus  "∃R. system_representatives S I R" by auto
 qed
-
-(*theorem Hall:
-  fixes S :: "'a ⇒ 'b set" and I :: "'a set"
-  assumes "∃g. enumeration (g:: nat ⇒'a)" and "∃h. enumeration (h:: nat ⇒'b)" 
-  and Finite: "∀i∈I. finite (S i)"
-  and Marriage: "∀J⊆I. finite J ⟶  card J ≤ card (⋃ (S ` J))"
- shows "∃R. system_representatives S I R"
-proof-  
-  have "satisfiable (𝒯 S I)" using assms all_formulas_satisfiable[of I] by auto
-  thus ?thesis using Finite Marriage satisfiable_representant[of S I] by auto
-qed*)
 
 theorem Hall:
   fixes S :: "('a::countable ⇒ 'b::countable set)" and I :: "'a set"
