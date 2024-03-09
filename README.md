@@ -1,4 +1,4 @@
-Fabián Fernando Serrano Suaréz  UNAL Manizales
+Fabián Fernando Serrano Suárez  UNAL Manizales
 
 Thaynara Arielly de Lima Universidade Federal de Goiáis
 
