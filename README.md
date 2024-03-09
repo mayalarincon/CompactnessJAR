@@ -1,8 +1,8 @@
-Fabián Fernando Serrano Suárez  UNAL Manizales
+Fabián Fernando Serrano Suárez  UNAL Manizales, Colombia
 
-Thaynara Arielly de Lima Universidade Federal de Goiáis
+Thaynara Arielly de Lima Universidade Federal de Goiáis, Brasil
 
-Mauricio Ayala-Rincón Universidade de Brasília
+Mauricio Ayala-Rincón Universidade de Brasília, Brasil
 
 --//--
 
